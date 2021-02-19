@@ -11,7 +11,7 @@ import SwiftUI
 struct IOSKELETON_LOGINApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
         }
     }
 }

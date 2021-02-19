@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  LoginView.swift
 //  IOSKELETON_LOGIN
 //
 //  Created by Rodrigo Labrador on 19/02/2021.
@@ -19,7 +19,7 @@ struct LoginView: View {
 
 
 
-struct ContentView_Previews: PreviewProvider {
+struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
     }

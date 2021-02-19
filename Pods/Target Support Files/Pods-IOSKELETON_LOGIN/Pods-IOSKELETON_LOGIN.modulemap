@@ -1,0 +1,6 @@
+framework module Pods_IOSKELETON_LOGIN {
+  umbrella header "Pods-IOSKELETON_LOGIN-umbrella.h"
+
+  export *
+  module * { export * }
+}
