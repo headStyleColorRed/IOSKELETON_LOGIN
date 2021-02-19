@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "IOSKELETON_LOGIN"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.2"
   spec.summary      = "New project"
   spec.ios.deployment_target = '14.0'
   spec.swift_version = "5.1"
