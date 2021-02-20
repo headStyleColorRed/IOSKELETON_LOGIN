@@ -15,7 +15,12 @@ enum InputTypes {
 
 enum NavigationFlow {
 	case login
-	case signin
+	case signup
+}
+
+// Resources
+extension Color {
+	static let mustardColor: Color = { return Color("Submit", bundle: LOGIN_BUNDLE.bundle) }()
 }
 
 public struct LoginView: View {
@@ -24,6 +29,7 @@ public struct LoginView: View {
 			Login()
 				.preferredColorScheme(.dark)
 				.navigationBarHidden(true)
+				.navigationBarTitle("")
 		}
 	}
 	
@@ -50,6 +56,8 @@ struct Login: View {
 				// Submit
 				SubmitButton(type: .login)
 				
+				// Navigation
+				ActionNavigation(type: .signup)
 				
 				Spacer(minLength: 0)
 			}
@@ -81,7 +89,7 @@ struct PresentScreen: View {
 				.font(.title)
 				.fontWeight(.bold)
 				.foregroundColor(.white)
-			Text("Please sign in to continue").foregroundColor(Color.white.opacity(0.5))
+			Text("Please log in to continue").foregroundColor(Color.white.opacity(0.5))
 		}).padding(20)
 	}
 }
@@ -128,29 +136,57 @@ struct SubmitButton: View {
 	var body: some View {
 		
 		Spacer()
-		HStack {
-			Spacer()
-			Text(submitLabel)
-				.fontWeight(.heavy)
-				.foregroundColor(.black)
-				.padding(.vertical)
-				.frame(width: UIScreen.main.bounds.width - 150)
-				.background(Color("Submit"))
-			Spacer()
+		VStack {
+			HStack {
+				Spacer()
+				Text(submitLabel)
+					.fontWeight(.heavy)
+					.foregroundColor(.white)
+					.padding(.vertical)
+					.frame(width: UIScreen.main.bounds.width - 150)
+					.background(Color.mustardColor)
+					.clipShape(Capsule())
+				Spacer()
+			}
+			Button("Forgot password?") {
+				print("Forgot password indeed")
+			}
+			.padding(.top, 5)
+			.foregroundColor(Color.mustardColor)
 		}
-		
 	}
 	
 	init(type: NavigationFlow) {
 		switch type {
 		case .login:
 			submitLabel = "LOGIN"
-		case .signin:
-			submitLabel = "SIGN IN"
+		case .signup:
+			submitLabel = "SIGN UP"
 		}
 	}
 }
 
+struct ActionNavigation: View {
+	let actionButtonLabel: String
+	
+	var body: some View {
+		HStack {
+			Text("Don't have an account?")
+			Button(actionButtonLabel) {
+				print("Navigate to sign up")
+			}.foregroundColor(Color.mustardColor)
+		}
+	}
+	
+	init(type: NavigationFlow) {
+		switch type {
+		case .login:
+			actionButtonLabel = "Login"
+		case .signup:
+			actionButtonLabel = "Signup"
+		}
+	}
+}
 
 
 
