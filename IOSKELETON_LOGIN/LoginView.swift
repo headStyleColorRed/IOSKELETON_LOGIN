@@ -55,7 +55,7 @@ struct Login: View {
 			}
 			Spacer(minLength: 0)
 		}
-		.background(Color("Background").ignoresSafeArea(.all, edges: .all))
+		.background(Color("Background", bundle: LOGIN_BUNDLE.bundle).ignoresSafeArea(.all, edges: .all))
 	}
 }
 
@@ -64,7 +64,7 @@ struct Logo: View {
 	var body: some View {
 		HStack {
 			Spacer()
-			Image("agile")
+			Image("agile", bundle: LOGIN_BUNDLE.bundle)
 				.resizable()
 				.aspectRatio(contentMode: .fit)
 				.frame(width: 250)

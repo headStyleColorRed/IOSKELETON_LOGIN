@@ -14,5 +14,8 @@ Pod::Spec.new do |spec|
   spec.author             = { "Rodrigo Labrador" => "headstylecolorred@gmail.com" }
   spec.source       = { :git => "https://github.com/headStyleColorRed/IOSKELETON_LOGIN.git", :tag => "#{spec.version}" }
   spec.source_files  = "IOSKELETON_LOGIN", "IOSKELETON_LOGIN/**/*.{swift}"
+  spec.resources = "#{spec.name}/**/*.{xcassets,imageset,json}"
+  
+  
 
 end

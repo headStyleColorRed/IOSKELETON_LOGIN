@@ -14,7 +14,7 @@
 
 /* Begin PBXFileReference section */
 		0EC1627E7C3FCF93601B0852CA215F4A /* Pods-IOSKELETON_LOGIN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-IOSKELETON_LOGIN.debug.xcconfig"; sourceTree = "<group>"; };
-		0FA42B9F25E0661400A643C8 /* IOSKELETON_LOGIN.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = IOSKELETON_LOGIN.podspec; path = ../IOSKELETON_LOGIN.podspec; sourceTree = "<group>"; };
+		0FA42B9F25E0661400A643C8 /* IOSKELETON_LOGIN.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = IOSKELETON_LOGIN.podspec; path = ../IOSKELETON_LOGIN.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2ABEB59736F0AF152855F0C7C7AE967E /* Pods_IOSKELETON_LOGIN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOSKELETON_LOGIN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		412108DBEB14BCFD49F8B7E29D8B1F02 /* Pods-IOSKELETON_LOGIN-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-IOSKELETON_LOGIN-acknowledgements.plist"; sourceTree = "<group>"; };
