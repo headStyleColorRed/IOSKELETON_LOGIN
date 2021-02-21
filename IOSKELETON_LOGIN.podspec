@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => "https://github.com/headStyleColorRed/IOSKELETON_LOGIN.git", :tag => "#{spec.version}" }
   spec.source_files  = "IOSKELETON_LOGIN", "IOSKELETON_LOGIN/**/*.{swift}"
   spec.resources = "#{spec.name}/**/*.{xcassets,imageset,json}"
-  
-  
+  spec.dependency 'Alamofire', '~> 5.2'
+  spec.dependency 'ObjectMapper', '~> 3.5'
 
 end
