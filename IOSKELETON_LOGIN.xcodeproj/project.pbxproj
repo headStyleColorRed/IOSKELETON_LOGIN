@@ -3,11 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0F7495B025E104B900A22C9D /* LOGIN_BUNDLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7495AF25E104B900A22C9D /* LOGIN_BUNDLE.swift */; };
+		0F766B6425E2CD09008122EF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F766B6325E2CD09008122EF /* LoginViewModel.swift */; };
+		0F766B6725E2CD11008122EF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F766B6625E2CD11008122EF /* LoginModel.swift */; };
+		0F766B6B25E2CDF9008122EF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F766B6A25E2CDF9008122EF /* Environment.swift */; };
+		0F766B6F25E2CF41008122EF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F766B6E25E2CF41008122EF /* LoginManager.swift */; };
+		0F766B7A25E2E314008122EF /* RequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F766B7925E2E314008122EF /* RequestDTO.swift */; };
 		0F7F142A25E01C1700270A11 /* IOSKELETON_LOGINApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F142925E01C1700270A11 /* IOSKELETON_LOGINApp.swift */; };
 		0F7F142C25E01C1700270A11 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F142B25E01C1700270A11 /* LoginView.swift */; };
 		0F7F142E25E01C1900270A11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7F142D25E01C1900270A11 /* Assets.xcassets */; };
@@ -17,6 +22,11 @@
 
 /* Begin PBXFileReference section */
 		0F7495AF25E104B900A22C9D /* LOGIN_BUNDLE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGIN_BUNDLE.swift; sourceTree = "<group>"; };
+		0F766B6325E2CD09008122EF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		0F766B6625E2CD11008122EF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		0F766B6A25E2CDF9008122EF /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		0F766B6E25E2CF41008122EF /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		0F766B7925E2E314008122EF /* RequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDTO.swift; sourceTree = "<group>"; };
 		0F7F142625E01C1700270A11 /* IOSKELETON_LOGIN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSKELETON_LOGIN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7F142925E01C1700270A11 /* IOSKELETON_LOGINApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSKELETON_LOGINApp.swift; sourceTree = "<group>"; };
 		0F7F142B25E01C1700270A11 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -44,8 +54,20 @@
 			isa = PBXGroup;
 			children = (
 				0F7F142B25E01C1700270A11 /* LoginView.swift */,
+				0F766B6325E2CD09008122EF /* LoginViewModel.swift */,
+				0F766B6625E2CD11008122EF /* LoginModel.swift */,
+				0F766B6E25E2CF41008122EF /* LoginManager.swift */,
+				0F766B7925E2E314008122EF /* RequestDTO.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		0F766B6925E2CDEE008122EF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0F766B6A25E2CDF9008122EF /* Environment.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		0F7F141D25E01C1700270A11 = {
@@ -69,6 +91,7 @@
 		0F7F142825E01C1700270A11 /* IOSKELETON_LOGIN */ = {
 			isa = PBXGroup;
 			children = (
+				0F766B6925E2CDEE008122EF /* Utils */,
 				0F766B5E25E29B8E008122EF /* Login */,
 				0F7F142925E01C1700270A11 /* IOSKELETON_LOGINApp.swift */,
 				0F7495AF25E104B900A22C9D /* LOGIN_BUNDLE.swift */,
@@ -115,6 +138,7 @@
 				0F7F142225E01C1700270A11 /* Sources */,
 				0F7F142325E01C1700270A11 /* Frameworks */,
 				0F7F142425E01C1700270A11 /* Resources */,
+				4C4E4BB11CAEED021E8EA60A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,6 +194,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4C4E4BB11CAEED021E8EA60A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOSKELETON_LOGIN/Pods-IOSKELETON_LOGIN-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOSKELETON_LOGIN/Pods-IOSKELETON_LOGIN-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOSKELETON_LOGIN/Pods-IOSKELETON_LOGIN-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CBB1C838F616F63B569606E8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -199,6 +240,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F766B6725E2CD11008122EF /* LoginModel.swift in Sources */,
+				0F766B6B25E2CDF9008122EF /* Environment.swift in Sources */,
+				0F766B6F25E2CF41008122EF /* LoginManager.swift in Sources */,
+				0F766B7A25E2E314008122EF /* RequestDTO.swift in Sources */,
+				0F766B6425E2CD09008122EF /* LoginViewModel.swift in Sources */,
 				0F7495B025E104B900A22C9D /* LOGIN_BUNDLE.swift in Sources */,
 				0F7F142C25E01C1700270A11 /* LoginView.swift in Sources */,
 				0F7F142A25E01C1700270A11 /* IOSKELETON_LOGINApp.swift in Sources */,

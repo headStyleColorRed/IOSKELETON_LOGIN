@@ -18,36 +18,20 @@ enum NavigationFlow {
 	case signup
 }
 
-// MARK: - Environment
-public struct PrimaryColor: EnvironmentKey {
-	public static var defaultValue: Color = { return Color("Background", bundle: LOGIN_BUNDLE.bundle) }()
-}
-public struct SecondaryColor: EnvironmentKey {
-	public static var defaultValue: Color = { return Color("Submit", bundle: LOGIN_BUNDLE.bundle) }()
-}
-
-
-
-public extension EnvironmentValues {
-	var primaryColor: Color {
-		get { self[PrimaryColor.self] }
-		set { self[PrimaryColor.self] = newValue }
-	}
-	
-	var secondaryColor: Color {
-		get { self[SecondaryColor.self] }
-		set { self[SecondaryColor.self] = newValue }
-	}
-}
-
 
 // MARK: - Main view
 public struct LoginView: View {
+	@ObservedObject var viewModel = LoginViewModel()
+	
 	@State var userName = String()
 	@State var password = String()
 	@State var repeatPassword = String()
-	@State var currentView: NavigationFlow = .signup
+	@State var currentView: NavigationFlow = .login
 	@Environment(\.primaryColor) var primaryColor
+	
+	private var errorText: String {
+		"Error on \(currentView == .login ? "Login" : "Sign up")"
+	}
 	
 	public var body: some View {
 		HStack {
@@ -76,10 +60,17 @@ public struct LoginView: View {
 			Spacer(minLength: 0)
 		}
 		.background(primaryColor.ignoresSafeArea(.all, edges: .all))
+		.alert(item: $viewModel.error) { error in
+			Alert(title: Text(errorText), message: Text(error.status ?? ""), dismissButton: .default(Text("Got it!")))
+		}
 	}
 	
 	private func submitAction() {
-		print("User: \(userName), and password: \(password)")
+		if currentView == .login {
+			viewModel.userLoginIntent(username: userName, password: password)
+		} else {
+			viewModel.userRegisterIntent(username: userName, password: password)
+		}
 	}
 	
 	private func changeNavigation() {
@@ -89,6 +80,8 @@ public struct LoginView: View {
 	
 	public init() {}
 }
+
+
 
 // MARK: - Logo
 struct Logo: View {
