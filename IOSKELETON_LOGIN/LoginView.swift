@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 enum InputTypes {
 	case user
@@ -39,6 +40,8 @@ public struct LoginView: View {
 struct Login: View {
 	@State var userName = String()
 	@State var password = String()
+	@State var repeatPassword = String()
+	@State var currentView: NavigationFlow = .signup
 	
 	var body: some View {
 		HStack {
@@ -47,23 +50,34 @@ struct Login: View {
 				Logo()
 				
 				// Presentation
-				PresentScreen()
+				PresentScreen(currentScreent: currentView)
 				
 				// Inputs
-				InputField(type: .user)
-				InputField(type: .password)
+				InputField(userFromParent: $userName, inputType: .user)
+				InputField(userFromParent: $password, inputType: .password)
+				if currentView == .signup {
+					InputField(userFromParent: $repeatPassword, inputType: .repeatPassword)
+				}
 				
 				// Submit
-				SubmitButton(type: .login)
+				SubmitButton(currentScreen: currentView, action: { submitAction() })
 				
 				// Navigation
-				ActionNavigation(type: .signup)
-				
 				Spacer(minLength: 0)
+				ActionNavigation(currentScreen: currentView, changeNavigation: changeNavigation)
+				
 			}
 			Spacer(minLength: 0)
 		}
 		.background(Color("Background", bundle: LOGIN_BUNDLE.bundle).ignoresSafeArea(.all, edges: .all))
+	}
+	
+	private func submitAction() {
+		print("User: \(userName), and password: \(password)")
+	}
+	
+	private func changeNavigation() {
+		currentView = currentView == .login ? .signup : .login
 	}
 }
 
@@ -83,55 +97,82 @@ struct Logo: View {
 
 // MARK: - Screen Presentation
 struct PresentScreen: View {
+	let currentScreent: NavigationFlow
+	
+	var headerTitleText: String {
+		currentScreent == .login ? "Login" : "Sign up"
+	}
+	var subHeaderText: String {
+		currentScreent == .login ? "Please log in to continue" : "Please sign up to continue"
+	}
+	
 	var body: some View {
 		VStack(alignment: .leading, spacing: 12, content: {
-			Text("Login")
+			Text(headerTitleText)
 				.font(.title)
 				.fontWeight(.bold)
 				.foregroundColor(.white)
-			Text("Please log in to continue").foregroundColor(Color.white.opacity(0.5))
+			Text(subHeaderText).foregroundColor(Color.white.opacity(0.5))
 		}).padding(20)
 	}
 }
 
 // MARK: - Inputs
 struct InputField: View {
-	@State var fieldValue = String()
-	let iconName: String
-	let textFieldName: String
+	@Binding var userFromParent: String
+	
+	let inputType: InputTypes
 	
 	var body: some View {
 		VStack {
 			HStack {
-				Image(systemName: iconName).font(.title2).foregroundColor(.white)
-				TextField(textFieldName, text: $fieldValue)
+				Image(systemName: icon()).font(.title2).foregroundColor(.white).frame(width: 30)
+				if inputType == .user {
+					TextField(textlabel(), text: $userFromParent)
+				} else {
+					SecureField(textlabel(), text: $userFromParent)
+				}
 			}
 		}
 		.padding()
-		.background(Color.white.opacity(fieldValue.isEmpty ? 0 : 0.12))
+		.background(Color.white.opacity(userFromParent.isEmpty ? 0 : 0.12))
 		.cornerRadius(15)
 		.padding(.horizontal, 20)
 		.padding(.vertical, 5)
 	}
 	
-	init(type: InputTypes) {
-		switch type {
+	func icon() -> String {
+		switch inputType {
 		case .user:
-			iconName = "envelope"
-			textFieldName = "EMAIL"
+			return "envelope"
 		case .password:
-			iconName = "lock"
-			textFieldName = "PASSWORD"
+			return "lock"
 		case .repeatPassword:
-			iconName = "envelope"
-			textFieldName = "EMAIL"
+			return "lock"
+		}
+	}
+	
+	func textlabel() -> String {
+		switch inputType {
+		case .user:
+			return "EMAIL"
+		case .password:
+			return "PASSWORD"
+		case .repeatPassword:
+			return "REPEAT PASSWORD"
 		}
 	}
 }
 
 // MARK: - Submit Button
 struct SubmitButton: View {
-	let submitLabel: String
+	let currentScreen: NavigationFlow
+	let submitAction: () -> Void
+	
+	
+	var submitLabel: String {
+		currentScreen == .login ? "LOGIN" : "SIGN UP"
+	}
 	
 	var body: some View {
 		
@@ -146,44 +187,48 @@ struct SubmitButton: View {
 					.frame(width: UIScreen.main.bounds.width - 150)
 					.background(Color.mustardColor)
 					.clipShape(Capsule())
+					.onTapGesture(count: 1) {
+						submitAction()
+					}
 				Spacer()
 			}
-			Button("Forgot password?") {
-				print("Forgot password indeed")
+			if currentScreen == .login {
+				Button("Forgot password?") {
+					print("Forgot password indeed")
+				}
+				.padding(.top, 5)
+				.foregroundColor(Color.mustardColor)
 			}
-			.padding(.top, 5)
-			.foregroundColor(Color.mustardColor)
+
 		}
 	}
 	
-	init(type: NavigationFlow) {
-		switch type {
-		case .login:
-			submitLabel = "LOGIN"
-		case .signup:
-			submitLabel = "SIGN UP"
-		}
+	init(currentScreen: NavigationFlow, action: @escaping () -> Void) {
+		self.currentScreen = currentScreen
+		submitAction = action
 	}
 }
 
+// MARK: - Change Navigation
 struct ActionNavigation: View {
-	let actionButtonLabel: String
+	let currentScreen: NavigationFlow
+	let changeNavigation: () -> Void
+	
+	var descriptionLabel: String {
+		currentScreen == .login ? "Don't have an account?" : "Do you have already an account?"
+	}
+	var actionButtonLabel: String {
+		currentScreen == .login ? "Sign up" : "Log in"
+	}
 	
 	var body: some View {
 		HStack {
-			Text("Don't have an account?")
+			Spacer()
+			Text(descriptionLabel)
 			Button(actionButtonLabel) {
-				print("Navigate to sign up")
+				changeNavigation()
 			}.foregroundColor(Color.mustardColor)
-		}
-	}
-	
-	init(type: NavigationFlow) {
-		switch type {
-		case .login:
-			actionButtonLabel = "Login"
-		case .signup:
-			actionButtonLabel = "Signup"
+			Spacer()
 		}
 	}
 }
