@@ -40,6 +40,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F766B5E25E29B8E008122EF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0F7F142B25E01C1700270A11 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		0F7F141D25E01C1700270A11 = {
 			isa = PBXGroup;
 			children = (
@@ -61,9 +69,9 @@
 		0F7F142825E01C1700270A11 /* IOSKELETON_LOGIN */ = {
 			isa = PBXGroup;
 			children = (
+				0F766B5E25E29B8E008122EF /* Login */,
 				0F7F142925E01C1700270A11 /* IOSKELETON_LOGINApp.swift */,
 				0F7495AF25E104B900A22C9D /* LOGIN_BUNDLE.swift */,
-				0F7F142B25E01C1700270A11 /* LoginView.swift */,
 				0F7F142D25E01C1900270A11 /* Assets.xcassets */,
 				0F7F143225E01C1900270A11 /* Info.plist */,
 				0F7F142F25E01C1900270A11 /* Preview Content */,

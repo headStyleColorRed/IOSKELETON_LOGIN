@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import LocalAuthentication
 
 enum InputTypes {
 	case user
@@ -19,31 +18,38 @@ enum NavigationFlow {
 	case signup
 }
 
-// Resources
-extension Color {
-	static let mustardColor: Color = { return Color("Submit", bundle: LOGIN_BUNDLE.bundle) }()
+// MARK: - Environment
+public struct PrimaryColor: EnvironmentKey {
+	public static var defaultValue: Color = { return Color("Background", bundle: LOGIN_BUNDLE.bundle) }()
+}
+public struct SecondaryColor: EnvironmentKey {
+	public static var defaultValue: Color = { return Color("Submit", bundle: LOGIN_BUNDLE.bundle) }()
 }
 
-public struct LoginView: View {
-	public var body: some View {
-		NavigationView {
-			Login()
-				.preferredColorScheme(.dark)
-				.navigationBarHidden(true)
-				.navigationBarTitle("")
-		}
+
+
+public extension EnvironmentValues {
+	var primaryColor: Color {
+		get { self[PrimaryColor.self] }
+		set { self[PrimaryColor.self] = newValue }
 	}
 	
-	public init() {}
+	var secondaryColor: Color {
+		get { self[SecondaryColor.self] }
+		set { self[SecondaryColor.self] = newValue }
+	}
 }
 
-struct Login: View {
+
+// MARK: - Main view
+public struct LoginView: View {
 	@State var userName = String()
 	@State var password = String()
 	@State var repeatPassword = String()
 	@State var currentView: NavigationFlow = .signup
+	@Environment(\.primaryColor) var primaryColor
 	
-	var body: some View {
+	public var body: some View {
 		HStack {
 			VStack(alignment: .leading) {
 				// Logo
@@ -69,7 +75,7 @@ struct Login: View {
 			}
 			Spacer(minLength: 0)
 		}
-		.background(Color("Background", bundle: LOGIN_BUNDLE.bundle).ignoresSafeArea(.all, edges: .all))
+		.background(primaryColor.ignoresSafeArea(.all, edges: .all))
 	}
 	
 	private func submitAction() {
@@ -79,6 +85,9 @@ struct Login: View {
 	private func changeNavigation() {
 		currentView = currentView == .login ? .signup : .login
 	}
+
+	
+	public init() {}
 }
 
 // MARK: - Logo
@@ -91,7 +100,7 @@ struct Logo: View {
 				.aspectRatio(contentMode: .fit)
 				.frame(width: 250)
 			Spacer()
-		}
+		}.padding()
 	}
 }
 
@@ -166,6 +175,7 @@ struct InputField: View {
 
 // MARK: - Submit Button
 struct SubmitButton: View {
+	@Environment(\.secondaryColor) var secondaryColor
 	let currentScreen: NavigationFlow
 	let submitAction: () -> Void
 	
@@ -185,7 +195,7 @@ struct SubmitButton: View {
 					.foregroundColor(.white)
 					.padding(.vertical)
 					.frame(width: UIScreen.main.bounds.width - 150)
-					.background(Color.mustardColor)
+					.background(secondaryColor)
 					.clipShape(Capsule())
 					.onTapGesture(count: 1) {
 						submitAction()
@@ -197,7 +207,7 @@ struct SubmitButton: View {
 					print("Forgot password indeed")
 				}
 				.padding(.top, 5)
-				.foregroundColor(Color.mustardColor)
+				.foregroundColor(secondaryColor)
 			}
 
 		}
@@ -211,6 +221,7 @@ struct SubmitButton: View {
 
 // MARK: - Change Navigation
 struct ActionNavigation: View {
+	@Environment(\.secondaryColor) var secondaryColor
 	let currentScreen: NavigationFlow
 	let changeNavigation: () -> Void
 	
@@ -227,7 +238,7 @@ struct ActionNavigation: View {
 			Text(descriptionLabel)
 			Button(actionButtonLabel) {
 				changeNavigation()
-			}.foregroundColor(Color.mustardColor)
+			}.foregroundColor(secondaryColor)
 			Spacer()
 		}
 	}
