@@ -10,6 +10,7 @@ import Foundation
 class LoginViewModel: ObservableObject {
 	@Published var model = LoginModel()
 	@Published var error: RequestResponse?
+	@Published var loading = Bool()
 	
 	private let manager = LoginManager()
 	
@@ -23,14 +24,16 @@ extension LoginViewModel {
 	func userLoginIntent(username: String, password: String) {
 		guard userDataisValid(username: username, password: password, actionType: .login) else { return }
 		
+		loading = true
 		manager.userLoginIntent(LoginModel(username: username, password: password)) { (response) in
+			self.loading = false
 			if response.code == "200" {
 				print("Success!!!!")
 			} else {
 				self.error = RequestResponse(response: response)
 			}
 		} error: { (error) in
-			// Handle Error
+			self.loading = false
 			print(error)
 		}
 
@@ -40,7 +43,9 @@ extension LoginViewModel {
 	func userRegisterIntent(username: String, password: String) {
 		guard userDataisValid(username: username, password: password, actionType: .signup) else { return }
 		
+		loading = true
 		manager.userRegisterIntent(LoginModel(username: username, password: password)) { (response) in
+			self.loading = false
 			if response.code == "200" {
 				print("Success!!!!")
 			} else {
@@ -48,7 +53,7 @@ extension LoginViewModel {
 			}
 				
 		} error: { (error) in
-			// Handle Error
+			self.loading = false
 			print(error)
 		}
 

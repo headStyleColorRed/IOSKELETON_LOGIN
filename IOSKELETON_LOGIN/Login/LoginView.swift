@@ -18,11 +18,19 @@ enum NavigationFlow {
 	case signup
 }
 
+public extension Notification.Name {
+	static var login = Notification.Name("login")
+}
+
+public struct LoginNotification {
+	public var isSuccess: Bool
+	public var userName: String
+}
 
 // MARK: - Main view
 public struct LoginView: View {
-	@ObservedObject var viewModel = LoginViewModel()
 	
+	@ObservedObject var viewModel = LoginViewModel()
 	@State var userName = String()
 	@State var password = String()
 	@State var repeatPassword = String()
@@ -34,53 +42,70 @@ public struct LoginView: View {
 	}
 	
 	public var body: some View {
-		HStack {
-			VStack(alignment: .leading) {
-				// Logo
-				Logo()
-				
-				// Presentation
-				PresentScreen(currentScreent: currentView)
-				
-				// Inputs
-				InputField(userFromParent: $userName, inputType: .user)
-				InputField(userFromParent: $password, inputType: .password)
-				if currentView == .signup {
-					InputField(userFromParent: $repeatPassword, inputType: .repeatPassword)
+		ZStack {
+			HStack {
+				VStack(alignment: .leading) {
+					// Logo
+					Logo()
+					
+					// Presentation
+					PresentScreen(currentScreent: currentView)
+					
+					// Inputs
+					InputField(userFromParent: $userName, inputType: .user)
+					InputField(userFromParent: $password, inputType: .password)
+					if currentView == .signup {
+						InputField(userFromParent: $repeatPassword, inputType: .repeatPassword)
+					}
+					
+					// Submit
+					SubmitButton(currentScreen: currentView, action: { submitAction() })
+					
+					// Navigation
+					Spacer(minLength: 0)
+					ActionNavigation(currentScreen: currentView, changeNavigation: changeNavigation)
+					
 				}
-				
-				// Submit
-				SubmitButton(currentScreen: currentView, action: { submitAction() })
-				
-				// Navigation
 				Spacer(minLength: 0)
-				ActionNavigation(currentScreen: currentView, changeNavigation: changeNavigation)
-				
 			}
-			Spacer(minLength: 0)
-		}
-		.background(primaryColor.ignoresSafeArea(.all, edges: .all))
-		.alert(item: $viewModel.error) { error in
-			Alert(title: Text(errorText), message: Text(error.status ?? ""), dismissButton: .default(Text("Got it!")))
+			.background(primaryColor.ignoresSafeArea(.all, edges: .all))
+			.alert(item: $viewModel.error) { error in
+				Alert(title: Text(errorText), message: Text(error.status ?? ""), dismissButton: .default(Text("Got it!")))
+			}
+			if viewModel.loading {
+				LoadingView()
+			}
 		}
 	}
 	
 	private func submitAction() {
-		if currentView == .login {
-			viewModel.userLoginIntent(username: userName, password: password)
-		} else {
-			viewModel.userRegisterIntent(username: userName, password: password)
-		}
+		let user = LoginNotification(isSuccess: true, userName: "Rodrigo")
+		NotificationCenter.default.post(name: .login, object: user, userInfo: ["info": "Whatever"])
+//		if currentView == .login {
+//			viewModel.userLoginIntent(username: userName, password: password)
+//		} else {
+//			viewModel.userRegisterIntent(username: userName, password: password)
+//		}
 	}
 	
 	private func changeNavigation() {
 		currentView = currentView == .login ? .signup : .login
 	}
-
 	
-	public init() {}
+	
+	public init() { }
 }
 
+
+// MARK: - Loading View
+struct LoadingView: View {
+	var body: some View {
+		ProgressView()
+			.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+			.background(Color.black.opacity(0.3))
+			.edgesIgnoringSafeArea(.all)
+	}
+}
 
 
 // MARK: - Logo
@@ -202,7 +227,7 @@ struct SubmitButton: View {
 				.padding(.top, 5)
 				.foregroundColor(secondaryColor)
 			}
-
+			
 		}
 	}
 	
