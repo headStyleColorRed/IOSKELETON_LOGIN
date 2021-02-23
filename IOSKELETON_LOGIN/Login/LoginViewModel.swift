@@ -7,17 +7,20 @@
 
 import Foundation
 
+protocol LoginViewModelProtocol {
+	func loginIntentResult(response: RequestResponse)
+}
+
 class LoginViewModel: ObservableObject {
 	@Published var model = LoginModel()
 	@Published var error: RequestResponse?
 	@Published var loading = Bool()
+	var delegate: LoginViewModelProtocol?
 	
 	private let manager = LoginManager()
 	
 
 }
-// anita@gmail.com
-// Navidad1
 
 extension LoginViewModel {
 	// MARK: - LOGIN

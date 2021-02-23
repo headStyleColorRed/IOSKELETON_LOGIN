@@ -18,15 +18,6 @@ enum NavigationFlow {
 	case signup
 }
 
-public extension Notification.Name {
-	static var login = Notification.Name("login")
-}
-
-public struct LoginNotification {
-	public var isSuccess: Bool
-	public var userName: String
-}
-
 // MARK: - Main view
 public struct LoginView: View {
 	
@@ -79,13 +70,11 @@ public struct LoginView: View {
 	}
 	
 	private func submitAction() {
-		let user = LoginNotification(isSuccess: true, userName: "Rodrigo")
-		NotificationCenter.default.post(name: .login, object: user, userInfo: ["info": "Whatever"])
-//		if currentView == .login {
-//			viewModel.userLoginIntent(username: userName, password: password)
-//		} else {
-//			viewModel.userRegisterIntent(username: userName, password: password)
-//		}
+		if currentView == .login {
+			viewModel.userLoginIntent(username: userName, password: password)
+		} else {
+			viewModel.userRegisterIntent(username: userName, password: password)
+		}
 	}
 	
 	private func changeNavigation() {
@@ -93,7 +82,19 @@ public struct LoginView: View {
 	}
 	
 	
-	public init() { }
+	public init() {
+		viewModel.delegate = self
+	}
+}
+
+extension LoginView: LoginViewModelProtocol {
+	func loginIntentResult(response: RequestResponse) {
+		guard let isError = response.isError, let userName = response.data else { return }
+		let user = LoginNotification(isSuccess: !isError, userName: userName)
+		NotificationCenter.default.post(name: .login, object: user, userInfo: nil)
+	}
+	
+	
 }
 
 
@@ -261,11 +262,6 @@ struct ActionNavigation: View {
 		}
 	}
 }
-
-
-
-
-
 
 
 struct LoginView_Previews: PreviewProvider {

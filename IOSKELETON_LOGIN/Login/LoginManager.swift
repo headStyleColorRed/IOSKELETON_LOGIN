@@ -14,13 +14,12 @@ class LoginManager {
 	
 	enum RequestURL: String {
 		case login = "/login/log_user"
-		case logout = "/logout/logout_user"
 		case register = "/register/register_user"
 	}
 	
 	
 	// MARK: - LOGIN
-	func userLoginIntent(_ userLoginData: LoginModel, succes: @escaping(RequestResponseDTO) -> (), error: @escaping(NSError) -> ()) {
+	func userLoginIntent(_ userLoginData: LoginModel, succes: @escaping(RequestResponseDTO) -> (), error: @escaping(AFError?) -> ()) {
 		let loginApi = baseURL + RequestURL.login.rawValue
 		let headers: HTTPHeaders = ["Content-Type":"application/json"]
 		let parameter = ["email": userLoginData.username, "password": userLoginData.password]
@@ -29,14 +28,17 @@ class LoginManager {
 			.responseJSON { (response) in
 				guard let safeData = response.data,
 					  let dataString = String(data: safeData, encoding: .utf8),
-					  let requestResponse = RequestResponseDTO(JSONString: dataString) else { return }
+					  let requestResponse = RequestResponseDTO(JSONString: dataString) else {
+					error(response.error)
+					return
+				}
 				
 				succes(requestResponse)
 		}
 	}
 	
 	// MARK: - REGISTER
-	func userRegisterIntent(_ userLoginData: LoginModel, succes: @escaping(RequestResponseDTO) -> (), error: @escaping(NSError) -> ()) {
+	func userRegisterIntent(_ userLoginData: LoginModel, succes: @escaping(RequestResponseDTO) -> (), error: @escaping(AFError?) -> ()) {
 		let loginApi = baseURL + RequestURL.register.rawValue
 		let headers: HTTPHeaders = ["Content-Type":"application/json"]
 		let parameter = ["email": userLoginData.username,
@@ -47,7 +49,10 @@ class LoginManager {
 			.responseJSON { (response) in
 				guard let safeData = response.data,
 					  let dataString = String(data: safeData, encoding: .utf8),
-					  let requestResponse = RequestResponseDTO(JSONString: dataString) else { return }
+					  let requestResponse = RequestResponseDTO(JSONString: dataString) else {
+					error(response.error)
+					return
+				}
 				
 				succes(requestResponse)
 		}
