@@ -6,8 +6,8 @@ target 'IOSKELETON_LOGIN' do
   use_frameworks!
 
   # Pods for IOSKELETON_LOGIN
-	# pod 'Alamofire', '~> 5.2'
-	# pod 'ObjectMapper', '~> 3.5'
-	# pod 'Firebase/Auth'
+	pod 'Alamofire', '~> 5.2'
+	pod 'ObjectMapper', '~> 3.5'
+	pod 'Firebase/Auth'
 
 end
