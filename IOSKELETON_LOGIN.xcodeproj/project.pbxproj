@@ -11,12 +11,14 @@
 		0F766B6425E2CD09008122EF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F766B6325E2CD09008122EF /* LoginViewModel.swift */; };
 		0F766B6725E2CD11008122EF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F766B6625E2CD11008122EF /* LoginModel.swift */; };
 		0F766B6B25E2CDF9008122EF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F766B6A25E2CDF9008122EF /* Environment.swift */; };
-		0F766B6F25E2CF41008122EF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F766B6E25E2CF41008122EF /* LoginManager.swift */; };
+		0F766B6F25E2CF41008122EF /* EskeletonLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F766B6E25E2CF41008122EF /* EskeletonLoginManager.swift */; };
 		0F766B7A25E2E314008122EF /* RequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F766B7925E2E314008122EF /* RequestDTO.swift */; };
 		0F7F142A25E01C1700270A11 /* IOSKELETON_LOGINApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F142925E01C1700270A11 /* IOSKELETON_LOGINApp.swift */; };
 		0F7F142C25E01C1700270A11 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F142B25E01C1700270A11 /* LoginView.swift */; };
 		0F7F142E25E01C1900270A11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7F142D25E01C1900270A11 /* Assets.xcassets */; };
 		0F7F143125E01C1900270A11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7F143025E01C1900270A11 /* Preview Assets.xcassets */; };
+		0F8C0A9125E6C64C00E60280 /* FirebaseLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8C0A9025E6C64C00E60280 /* FirebaseLoginManager.swift */; };
+		0FE1B21525E7CBCE00B35852 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FE1B21425E7CBCE00B35852 /* GoogleService-Info.plist */; };
 		0FF76FFA25E57CC5000257EB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF76FF925E57CC5000257EB /* NotificationManager.swift */; };
 		281AB902F68D579398D1FF2F /* Pods_IOSKELETON_LOGIN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DEA507BB0D74AE3D3B1687 /* Pods_IOSKELETON_LOGIN.framework */; };
 /* End PBXBuildFile section */
@@ -26,7 +28,7 @@
 		0F766B6325E2CD09008122EF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0F766B6625E2CD11008122EF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		0F766B6A25E2CDF9008122EF /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		0F766B6E25E2CF41008122EF /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		0F766B6E25E2CF41008122EF /* EskeletonLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EskeletonLoginManager.swift; sourceTree = "<group>"; };
 		0F766B7925E2E314008122EF /* RequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDTO.swift; sourceTree = "<group>"; };
 		0F7F142625E01C1700270A11 /* IOSKELETON_LOGIN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSKELETON_LOGIN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7F142925E01C1700270A11 /* IOSKELETON_LOGINApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSKELETON_LOGINApp.swift; sourceTree = "<group>"; };
@@ -34,6 +36,8 @@
 		0F7F142D25E01C1900270A11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F7F143025E01C1900270A11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0F7F143225E01C1900270A11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F8C0A9025E6C64C00E60280 /* FirebaseLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseLoginManager.swift; sourceTree = "<group>"; };
+		0FE1B21425E7CBCE00B35852 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0FF76FF925E57CC5000257EB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		21DEA507BB0D74AE3D3B1687 /* Pods_IOSKELETON_LOGIN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOSKELETON_LOGIN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A75FEED554663E999D07434 /* Pods-IOSKELETON_LOGIN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSKELETON_LOGIN.release.xcconfig"; path = "Target Support Files/Pods-IOSKELETON_LOGIN/Pods-IOSKELETON_LOGIN.release.xcconfig"; sourceTree = "<group>"; };
@@ -55,10 +59,10 @@
 		0F766B5E25E29B8E008122EF /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				0F8C0A8F25E6C63A00E60280 /* RequestManagers */,
 				0F7F142B25E01C1700270A11 /* LoginView.swift */,
 				0F766B6325E2CD09008122EF /* LoginViewModel.swift */,
 				0F766B6625E2CD11008122EF /* LoginModel.swift */,
-				0F766B6E25E2CF41008122EF /* LoginManager.swift */,
 				0F766B7925E2E314008122EF /* RequestDTO.swift */,
 			);
 			path = Login;
@@ -100,6 +104,7 @@
 				0F7495AF25E104B900A22C9D /* LOGIN_BUNDLE.swift */,
 				0F7F142D25E01C1900270A11 /* Assets.xcassets */,
 				0F7F143225E01C1900270A11 /* Info.plist */,
+				0FE1B21425E7CBCE00B35852 /* GoogleService-Info.plist */,
 				0F7F142F25E01C1900270A11 /* Preview Content */,
 			);
 			path = IOSKELETON_LOGIN;
@@ -111,6 +116,15 @@
 				0F7F143025E01C1900270A11 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0F8C0A8F25E6C63A00E60280 /* RequestManagers */ = {
+			isa = PBXGroup;
+			children = (
+				0F766B6E25E2CF41008122EF /* EskeletonLoginManager.swift */,
+				0F8C0A9025E6C64C00E60280 /* FirebaseLoginManager.swift */,
+			);
+			path = RequestManagers;
 			sourceTree = "<group>";
 		};
 		594ABD5C31F85B4662733798 /* Frameworks */ = {
@@ -141,7 +155,6 @@
 				0F7F142225E01C1700270A11 /* Sources */,
 				0F7F142325E01C1700270A11 /* Frameworks */,
 				0F7F142425E01C1700270A11 /* Resources */,
-				4C4E4BB11CAEED021E8EA60A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,29 +204,13 @@
 			files = (
 				0F7F143125E01C1900270A11 /* Preview Assets.xcassets in Resources */,
 				0F7F142E25E01C1900270A11 /* Assets.xcassets in Resources */,
+				0FE1B21525E7CBCE00B35852 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4C4E4BB11CAEED021E8EA60A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-IOSKELETON_LOGIN/Pods-IOSKELETON_LOGIN-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-IOSKELETON_LOGIN/Pods-IOSKELETON_LOGIN-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOSKELETON_LOGIN/Pods-IOSKELETON_LOGIN-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CBB1C838F616F63B569606E8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,7 +242,8 @@
 			files = (
 				0F766B6725E2CD11008122EF /* LoginModel.swift in Sources */,
 				0F766B6B25E2CDF9008122EF /* Environment.swift in Sources */,
-				0F766B6F25E2CF41008122EF /* LoginManager.swift in Sources */,
+				0F8C0A9125E6C64C00E60280 /* FirebaseLoginManager.swift in Sources */,
+				0F766B6F25E2CF41008122EF /* EskeletonLoginManager.swift in Sources */,
 				0FF76FFA25E57CC5000257EB /* NotificationManager.swift in Sources */,
 				0F766B7A25E2E314008122EF /* RequestDTO.swift in Sources */,
 				0F766B6425E2CD09008122EF /* LoginViewModel.swift in Sources */,
@@ -389,7 +387,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rodrigopple.IOSKELETON-LOGIN";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tangerinecoding.ioskeletonlogin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -411,7 +409,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rodrigopple.IOSKELETON-LOGIN";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tangerinecoding.ioskeletonlogin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

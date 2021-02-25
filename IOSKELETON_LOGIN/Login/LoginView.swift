@@ -21,12 +21,12 @@ enum NavigationFlow {
 // MARK: - Main view
 public struct LoginView: View {
 	
-	@ObservedObject var viewModel = LoginViewModel()
+	@ObservedObject var viewModel = LoginViewModel(using: .firebase)
+	@Environment(\.primaryColor) var primaryColor
 	@State var userName = String()
 	@State var password = String()
 	@State var repeatPassword = String()
 	@State var currentView: NavigationFlow = .login
-	@Environment(\.primaryColor) var primaryColor
 	
 	private var errorText: String {
 		"Error on \(currentView == .login ? "Login" : "Sign up")"

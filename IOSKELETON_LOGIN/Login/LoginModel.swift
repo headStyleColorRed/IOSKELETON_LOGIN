@@ -26,4 +26,11 @@ struct RequestResponse: Identifiable {
 		self.isError = code != "200"
 		self.id = Int(code ?? "0")
 	}
+	init (code: String? = "", status: String? = "", data: String? = "", isError: Bool? = false, id: Int? = 0) {
+		self.code = code
+		self.status = status
+		self.data = data
+		self.isError = isError
+		self.id = id
+	}
 }

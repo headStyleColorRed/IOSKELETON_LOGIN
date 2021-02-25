@@ -9,17 +9,30 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
-class LoginManager {
-	let baseURL = "http://localhost:8888"
+protocol LoginManager {
+	var baseURL: String { get set }
+	func userLoginIntent(_ userLoginData: LoginModel, succes: @escaping(RequestResponseDTO) -> (), error: @escaping(String?) -> ())
+	func userRegisterIntent(_ userLoginData: LoginModel, succes: @escaping(RequestResponseDTO) -> (), error: @escaping(String?) -> ())
+}
+
+// anita@gmail.com
+// fakePassword
+
+class EskeletonLoginManager: LoginManager {
+	var baseURL: String
 	
 	enum RequestURL: String {
 		case login = "/login/log_user"
 		case register = "/register/register_user"
 	}
 	
+	init(baseUrl: String) {
+		self.baseURL = baseUrl
+	}
+	
 	
 	// MARK: - LOGIN
-	func userLoginIntent(_ userLoginData: LoginModel, succes: @escaping(RequestResponseDTO) -> (), error: @escaping(AFError?) -> ()) {
+	func userLoginIntent(_ userLoginData: LoginModel, succes: @escaping(RequestResponseDTO) -> (), error: @escaping(String?) -> ()) {
 		let loginApi = baseURL + RequestURL.login.rawValue
 		let headers: HTTPHeaders = ["Content-Type":"application/json"]
 		let parameter = ["email": userLoginData.username, "password": userLoginData.password]
@@ -29,16 +42,20 @@ class LoginManager {
 				guard let safeData = response.data,
 					  let dataString = String(data: safeData, encoding: .utf8),
 					  let requestResponse = RequestResponseDTO(JSONString: dataString) else {
-					error(response.error)
+					error(response.error?.localizedDescription)
 					return
 				}
 				
+				guard requestResponse.code == "200" else {
+					error("Request response code is \(requestResponse.code ?? "unknown")")
+					return
+				}
 				succes(requestResponse)
 		}
 	}
 	
 	// MARK: - REGISTER
-	func userRegisterIntent(_ userLoginData: LoginModel, succes: @escaping(RequestResponseDTO) -> (), error: @escaping(AFError?) -> ()) {
+	func userRegisterIntent(_ userLoginData: LoginModel, succes: @escaping(RequestResponseDTO) -> (), error: @escaping(String?) -> ()) {
 		let loginApi = baseURL + RequestURL.register.rawValue
 		let headers: HTTPHeaders = ["Content-Type":"application/json"]
 		let parameter = ["email": userLoginData.username,
@@ -50,10 +67,14 @@ class LoginManager {
 				guard let safeData = response.data,
 					  let dataString = String(data: safeData, encoding: .utf8),
 					  let requestResponse = RequestResponseDTO(JSONString: dataString) else {
-					error(response.error)
+					error(response.error?.localizedDescription)
 					return
 				}
 				
+				guard requestResponse.code == "200" else {
+					error("Request response code is \(requestResponse.code ?? "unknown")")
+					return
+				}
 				succes(requestResponse)
 		}
 	}
